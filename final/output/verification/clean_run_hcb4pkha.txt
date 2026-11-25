@@ -1,0 +1,360 @@
+last complete quarter: 2026Q2
+retail quarterly: n = 130 range = 1994Q1 .. 2026Q2 missing = []
+pmi quarterly: n = 86 range = 2005Q1 .. 2026Q2
+Quarterly construction & verification - built 2026-09-28
+Sources: NBS National Data (国家数据), region=全国
+
+Retail quarterly: n=130, 1994Q1..2026Q2, missing=[]
+PMI quarterly: n=86, 2005Q1..2026Q2
+Cumulative consistency: max |sum(Q1..Q4) - cum(Dec)|/cum(Dec) over 2000-2025 = 0
+  (construction telescopes to cum(Dec) by definition for 2000+; residual from 1994-99 monthly sums)
+Known data-quality notes:
+  1. Since 2012, NBS publishes Jan & Feb retail only as a combined Jan-Feb total;
+     the current-month series has no separate Jan/Feb values for 2012+.
+  2. The 'current-month' and 'cumulative' (vintage) series disagree in a few years
+     (2005 ~5.2% annual; 2011 ~0.2%, mainly Q1); the cumulative vintage matches the
+     officially published annual totals, so it is used for 2000+.
+  3. Retail series revised per 5th Economic Census; since 2025 growth rates are on a
+     comparable basis (see NBS metadata annotation).
+Annual retail totals 1994-2025 (bn CNY); value at 2025: 501,202
+
+Chinese New Year effect, monthly era 1994-2011 (Jan/Feb published separately):
+  mean Feb/Jan retail ratio, CNY-in-Jan years (n=6): 0.909
+  mean Feb/Jan retail ratio, CNY-in-Feb years (n=12): 0.949
+  => Feb exceeds Jan share of combined total by 4ppt on average when CNY falls in February
+
+Chinese New Year effect, quarterly era 2012-2025 (only joint Jan-Feb published):
+  mean Q1 share of annual retail, CNY-in-Jan years (n=6): 23.4%
+  mean Q1 share of annual retail, CNY-in-Feb years (n=8): 23.9%
+
+Seasonal pattern (1994-2026, quarterly peaks/troughs by quarter):
+  peaks:   Q1: 0x, Q2: 0x, Q3: 0x, Q4: 32x
+  troughs: Q1: 9x, Q2: 22x, Q3: 1x, Q4: 0x
+
+log-retail: mean 10.3230, sd 1.1292, min 8.1802, max 11.8154
+PMI: mean 51.18, min 41.53, max 56.27
+Focused R evaluation tests passed
+saved table: tab_seasonality.csv 
+saved table: tab_cny_evidence.csv 
+saved table: tab_cny_covariates.csv 
+saved table: tab_data_summary.csv 
+
+== retail: 130 obs | 1994Q1 - 2026Q2 
+== pmi: 86 obs | 2005Q1 - 2026Q2 
+== PMI-lag models start at 2005Q3 
+== CNY r = 0.0027  p = 0.988 
+saved figure: fig1_series.png 
+saved figure: fig2_seasonal.png 
+saved figure: fig1_eda.png 
+saved figure: fig3_acf.png 
+saved figure: figA2_acf_first_diff.png 
+
+== EDA summary ==
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  8.180   9.197  10.501  10.323  11.440  11.815 
+Mean quarterly share of annual sales:
+  q Mean_Share_Pct Peak_Count Trough_Count
+1 1           23.7          0            9
+2 2           23.4          0           22
+3 3           24.4          0            1
+4 4           28.5         32            0
+saved table: tab_seasonality.csv 
+saved table: tab_cny_evidence.csv 
+saved table: tab_cny_covariates.csv 
+saved table: tab_data_summary.csv 
+
+== retail: 130 obs | 1994Q1 - 2026Q2 
+== pmi: 86 obs | 2005Q1 - 2026Q2 
+== PMI-lag models start at 2005Q3 
+== CNY r = 0.0027  p = 0.988 
+saved table: tab_stationarity.csv 
+
+== ADF (H0: unit root) / KPSS (H0: level or trend stationarity)
+                                                                 Series
+log(retail)                                                 log(retail)
+diff(log), d = 1                                       diff(log), d = 1
+diff(log, 4), D = 1                                 diff(log, 4), D = 1
+diff(diff(log, 1), 4), d = 1, D = 1 diff(diff(log, 1), 4), d = 1, D = 1
+                                    ADF_stat ADF_p_txt KPSS_stat KPSS_p_txt
+log(retail)                             0.44     0.990      2.69      <0.01
+diff(log), d = 1                       -3.82     0.020      0.49      0.045
+diff(log, 4), D = 1                    -2.87     0.214      1.00      <0.01
+diff(diff(log, 1), 4), d = 1, D = 1    -9.21     <0.01      0.04      0.100
+saved table: tab_seasonality.csv 
+saved table: tab_cny_evidence.csv 
+saved table: tab_cny_covariates.csv 
+saved table: tab_data_summary.csv 
+
+== retail: 130 obs | 1994Q1 - 2026Q2 
+== pmi: 86 obs | 2005Q1 - 2026Q2 
+== PMI-lag models start at 2005Q3 
+== CNY r = 0.0027  p = 0.988 
+`geom_smooth()` using formula = 'y ~ x'
+saved figure: fig4_cny.png 
+
+== CNY evidence ==
+        Era      Group  n Mean_Feb_Jan Mean_Q1_Share
+1 1994-2011 CNY in Jan  6        0.909          23.8
+2 1994-2011 CNY in Feb 12        0.949          23.7
+3 2012-2025 CNY in Jan  6           NA          23.4
+4 2012-2025 CNY in Feb  8           NA          23.9
+5 1994-2025 CNY in Jan 12           NA          23.6
+6 1994-2025 CNY in Feb 20           NA          23.8
+Pearson r = 0.0027  p = 0.988 
+saved table: tab_seasonality.csv 
+saved table: tab_cny_evidence.csv 
+saved table: tab_cny_covariates.csv 
+saved table: tab_data_summary.csv 
+
+== retail: 130 obs | 1994Q1 - 2026Q2 
+== pmi: 86 obs | 2005Q1 - 2026Q2 
+== PMI-lag models start at 2005Q3 
+== CNY r = 0.0027  p = 0.988 
+saved table: tab_rolling_failures.csv 
+
+== Rolling fit / forecast event rows: 0 ==
+saved table: tab_rolling_errors.csv 
+saved table: tab_rolling_accuracy.csv 
+saved table: tab_rolling_accuracy_wide.csv 
+saved table: tab_best_model.csv 
+saved table: tab_best_model_h1.csv 
+
+Best h=2 model:
+# A tibble: 1 × 8
+  model          label                family     h     n   MAE  RMSE  MASE
+  <chr>          <chr>                <chr>  <int> <int> <dbl> <dbl> <dbl>
+1 SARIMA_011_110 SARIMA(0,1,1)(1,1,0) SARIMA     2    56 3628. 6085. 0.907
+
+Best h=1 model:
+# A tibble: 1 × 8
+  model          label                family     h     n   MAE  RMSE  MASE
+  <chr>          <chr>                <chr>  <int> <int> <dbl> <dbl> <dbl>
+1 SARIMA_011_101 SARIMA(0,1,1)(1,0,1) SARIMA     1    56 2845. 5223. 0.700
+saved figure: fig5_rolling_mase.png 
+saved table: tab_dm_tests.csv 
+
+== Diebold-Mariano tests ==
+        h                                  Comparison DM_stat p_value  n
+DM...1  1            SARIMA_011_110 vs SARIMA_011_011   0.378 0.70700 56
+DM...2  1                    SARIMA_011_110 vs SNaive  -2.516 0.01480 56
+DM...3  1            SARIMA_011_101 vs SARIMA_011_110  -0.559 0.57900 56
+DM...4  1                    SARIMA_011_011 vs SNaive  -2.779 0.00744 56
+DM...5  1               SARIMAX_CNY vs SARIMA_011_011  -0.422 0.67500 56
+DM...6  1                       SARIMAX_CNY vs SNaive  -2.687 0.00953 56
+DM...7  1              SARIMAX_CNY_jan vs SARIMAX_CNY  -0.380 0.70500 56
+DM...8  1               SARIMAX_PMI vs SARIMA_011_011   0.313 0.75600 56
+DM...9  1           SARIMAX_CNY_PMI vs SARIMA_011_011   0.080 0.93700 56
+DM...10 1 SARIMAX_CNY_2005Q3 vs SARIMA_011_011_2005Q3  -0.412 0.68200 56
+DM...11 1        SARIMAX_PMI vs SARIMA_011_011_2005Q3   0.634 0.52800 56
+DM...12 1       SARIMAX_CNY_PMI vs SARIMAX_CNY_2005Q3   1.213 0.23000 56
+DM...13 1                   ETS_AAA vs SARIMA_011_011   0.297 0.76700 56
+DM...14 1                    SARIMA_011_101 vs SNaive  -2.781 0.00741 56
+DM...15 1            SARIMA_011_101 vs SARIMA_011_011  -1.711 0.09270 56
+DM...16 2            SARIMA_011_110 vs SARIMA_011_011  -0.358 0.72200 56
+DM...17 2                    SARIMA_011_110 vs SNaive  -1.688 0.09710 56
+DM...18 2            SARIMA_011_101 vs SARIMA_011_110  -0.008 0.99400 56
+DM...19 2                    SARIMA_011_011 vs SNaive  -1.578 0.12000 56
+DM...20 2               SARIMAX_CNY vs SARIMA_011_011  -0.775 0.44200 56
+DM...21 2                       SARIMAX_CNY vs SNaive  -1.622 0.11100 56
+DM...22 2              SARIMAX_CNY_jan vs SARIMAX_CNY   0.000 1.00000 56
+DM...23 2               SARIMAX_PMI vs SARIMA_011_011  -0.229 0.81900 56
+DM...24 2           SARIMAX_CNY_PMI vs SARIMA_011_011  -0.738 0.46300 56
+DM...25 2 SARIMAX_CNY_2005Q3 vs SARIMA_011_011_2005Q3  -0.572 0.57000 56
+DM...26 2        SARIMAX_PMI vs SARIMA_011_011_2005Q3  -0.786 0.43500 56
+DM...27 2       SARIMAX_CNY_PMI vs SARIMAX_CNY_2005Q3   0.317 0.75200 56
+DM...28 2                   ETS_AAA vs SARIMA_011_011   0.222 0.82500 56
+saved table: tab_seasonality.csv 
+saved table: tab_cny_evidence.csv 
+saved table: tab_cny_covariates.csv 
+saved table: tab_data_summary.csv 
+
+== retail: 130 obs | 1994Q1 - 2026Q2 
+== pmi: 86 obs | 2005Q1 - 2026Q2 
+== PMI-lag models start at 2005Q3 
+== CNY r = 0.0027  p = 0.988 
+Diagnostics for frozen incumbent: SARIMA_011_110 
+saved table: tab_full_fit_events.csv 
+saved table: tab_model_selection.csv 
+saved table: tab_diagnostics.csv 
+
+== Residual diagnostics ==
+           model   n      sigma2 LB8_stat LB8_p LB12_stat LB12_p LB2_stat
+1 SARIMA_011_110 130 0.002230334     9.25  0.16     14.57  0.149    14.07
+   LB2_p Shapiro_p
+1 0.0799  1.03e-11
+saved table: tab_coefficients.csv 
+
+== Coefficients ==
+           model term   estimate  std_error   t_value      p_value
+1 SARIMA_011_110  ma1 -0.4417536 0.08385184 -5.268263 5.954639e-07
+2 SARIMA_011_110 sar1 -0.4988434 0.07546849 -6.609956 1.044852e-09
+saved table: tab_covariate_models.csv 
+
+== Covariate models ==
+                model        term      estimate   std_error    t_value
+1         SARIMAX_CNY         ma1 -0.3560916382 0.088058650 -4.0438008
+2         SARIMAX_CNY        sma1 -0.6116530679 0.083688139 -7.3087187
+3         SARIMAX_CNY cny_q1_frac  0.0989750213 0.056178931  1.7617819
+4  SARIMAX_CNY_2005Q3         ma1 -0.5611654238 0.107009552 -5.2440685
+5  SARIMAX_CNY_2005Q3        sma1 -0.5705487436 0.106415960 -5.3614960
+6  SARIMAX_CNY_2005Q3 cny_q1_frac  0.1656549128 0.079583681  2.0815186
+7         SARIMAX_PMI         ma1 -0.5964717654 0.103585710 -5.7582438
+8         SARIMAX_PMI        sma1 -0.5711337834 0.108526386 -5.2626260
+9         SARIMAX_PMI    pmi_lag2  0.0016843375 0.002661551  0.6328407
+10    SARIMAX_CNY_PMI         ma1 -0.5711088968 0.108512590 -5.2630658
+11    SARIMAX_CNY_PMI        sma1 -0.5617662521 0.109847806 -5.1140416
+12    SARIMAX_CNY_PMI cny_q1_frac  0.1615803971 0.080291565  2.0124206
+13    SARIMAX_CNY_PMI    pmi_lag2  0.0009497948 0.002611582  0.3636857
+        p_value  LB8_p      AICc
+1  9.252812e-05 0.5990 -410.0377
+2  3.075535e-11 0.5990 -410.0377
+3  8.061102e-02 0.5990 -410.0377
+4  1.370268e-06 0.1430 -238.9298
+5  8.569759e-07 0.1430 -238.9298
+6  4.075395e-02 0.1430 -238.9298
+7  1.705231e-07 0.3490 -235.1681
+8  1.272663e-06 0.3490 -235.1681
+9  5.287372e-01 0.3490 -235.1681
+10 1.301042e-06 0.0971 -236.7793
+11 2.343116e-06 0.0971 -236.7793
+12 4.776637e-02 0.0971 -236.7793
+13 7.171159e-01 0.0971 -236.7793
+saved figure: fig7_residuals.png 
+saved table: tab_seasonality.csv 
+saved table: tab_cny_evidence.csv 
+saved table: tab_cny_covariates.csv 
+saved table: tab_data_summary.csv 
+
+== retail: 130 obs | 1994Q1 - 2026Q2 
+== pmi: 86 obs | 2005Q1 - 2026Q2 
+== PMI-lag models start at 2005Q3 
+== CNY r = 0.0027  p = 0.988 
+saved table: tab_final_forecast_events.csv 
+saved table: tab_final_forecast.csv 
+saved table: tab_final_forecast_long.csv 
+saved table: tab_final_forecast_rerun.csv 
+saved table: tab_final_forecast_long_rerun.csv 
+saved table: tab_final_forecast_reconciliation.csv 
+
+== Archived primary forecast and clean rerun deltas ==
+# A tibble: 10 × 6
+   quarter quantity archived   rerun     delta same_at_0.01_trillion
+   <chr>   <chr>       <dbl>   <dbl>     <dbl> <lgl>                
+ 1 2026Q3  point     122810. 122810.  2.04e-10 TRUE                 
+ 2 2026Q3  lo80      115469. 115469. -4.37e-11 TRUE                 
+ 3 2026Q3  hi80      130327. 130327.  2.91e-11 TRUE                 
+ 4 2026Q3  lo95      111828. 111828.  2.91e-10 TRUE                 
+ 5 2026Q3  hi95      134570. 134570.  4.95e-10 TRUE                 
+ 6 2026Q4  point     139192. 139192. -2.62e-10 TRUE                 
+ 7 2026Q4  lo80      129680. 129680.  1.31e-10 TRUE                 
+ 8 2026Q4  hi80      148964. 148964. -1.75e-10 TRUE                 
+ 9 2026Q4  lo95      125008. 125008. -1.60e-10 TRUE                 
+10 2026Q4  hi95      154531. 154531. -4.07e-10 TRUE                 
+saved figure: fig6_fanchart.png 
+saved table: tab_robustness.csv 
+saved table: tab_robustness_h2.csv 
+
+== Robustness, h = 2 ==
+# A tibble: 17 × 3
+   model                 `All targets` `Non-COVID target`
+   <chr>                         <dbl>              <dbl>
+ 1 SARIMA_011_110                0.907              0.783
+ 2 SARIMA_011_101                0.950              0.791
+ 3 SARIMA_011_011_2005Q3         0.982              0.827
+ 4 SARIMAX_PMI                   0.988              0.833
+ 5 SARIMA_011_011                0.993              0.837
+ 6 SARIMAX_CNY                   0.998              0.845
+ 7 SARIMAX_CNY_jan               0.998              0.847
+ 8 SARIMA_111_011                1.00               0.848
+ 9 SARIMAX_CNY_2005Q3            1.000              0.850
+10 SARIMA_011_111                0.988              0.850
+11 SARIMAX_CNY_PMI               1.01               0.855
+12 ETS_AAA                       1.02               0.877
+13 SARIMA_011_001_drift          1.63               1.35 
+14 SARIMA_011_001                1.77               1.56 
+15 SNaive                        1.87               1.84 
+16 Naive                         2.36               2.19 
+17 Mean                         16.7               16.8  
+saved figure: fig8_robustness.png 
+saved table: tab_walk_forward_choices.csv 
+saved table: tab_supplemental_predictions.csv 
+saved table: tab_optimization_accuracy.csv 
+
+== Supplemental point metrics, all origins and Q1 ==
+# A tibble: 24 × 9
+   period      model                    label                             
+   <chr>       <chr>                    <chr>                             
+ 1 All targets SARIMA_011_101           SARIMA(0,1,1)(1,0,1)              
+ 2 All targets SARIMA_011_110           SARIMA(0,1,1)(1,1,0)              
+ 3 All targets WalkForward_SARIMA       Chronological SARIMA selection    
+ 4 All targets SARIMAX_CNY_2005Q3       SARIMAX + CNY, 2005Q3 start       
+ 5 All targets SARIMA_011_011_2005Q3    SARIMA(0,1,1)(0,1,1), 2005Q3 start
+ 6 All targets Blend50_Incumbent_SNaive 50:50 incumbent and seasonal naive
+ 7 All targets SARIMA_011_110           SARIMA(0,1,1)(1,1,0)              
+ 8 All targets WalkForward_SARIMA       Chronological SARIMA selection    
+ 9 All targets SARIMA_011_101           SARIMA(0,1,1)(1,0,1)              
+10 All targets SARIMA_011_011_2005Q3    SARIMA(0,1,1)(0,1,1), 2005Q3 start
+11 All targets SARIMAX_CNY_2005Q3       SARIMAX + CNY, 2005Q3 start       
+12 All targets Blend50_Incumbent_SNaive 50:50 incumbent and seasonal naive
+13 Q1 targets  SARIMA_011_101           SARIMA(0,1,1)(1,0,1)              
+14 Q1 targets  SARIMA_011_110           SARIMA(0,1,1)(1,1,0)              
+15 Q1 targets  SARIMA_011_011_2005Q3    SARIMA(0,1,1)(0,1,1), 2005Q3 start
+16 Q1 targets  SARIMAX_CNY_2005Q3       SARIMAX + CNY, 2005Q3 start       
+17 Q1 targets  WalkForward_SARIMA       Chronological SARIMA selection    
+18 Q1 targets  Blend50_Incumbent_SNaive 50:50 incumbent and seasonal naive
+19 Q1 targets  SARIMA_011_110           SARIMA(0,1,1)(1,1,0)              
+20 Q1 targets  SARIMA_011_101           SARIMA(0,1,1)(1,0,1)              
+21 Q1 targets  SARIMA_011_011_2005Q3    SARIMA(0,1,1)(0,1,1), 2005Q3 start
+22 Q1 targets  SARIMAX_CNY_2005Q3       SARIMAX + CNY, 2005Q3 start       
+23 Q1 targets  WalkForward_SARIMA       Chronological SARIMA selection    
+24 Q1 targets  Blend50_Incumbent_SNaive 50:50 incumbent and seasonal naive
+   family                   h     n   MAE  RMSE  MASE
+   <chr>                <int> <int> <dbl> <dbl> <dbl>
+ 1 SARIMA                   1    56 2845. 5223. 0.700
+ 2 SARIMA                   1    56 2947. 5487. 0.725
+ 3 Adaptive sensitivity     1    56 2978. 5577. 0.733
+ 4 SARIMAX                  1    56 3047. 5294. 0.767
+ 5 SARIMA                   1    56 3047. 5415. 0.768
+ 6 Point sensitivity        1    56 4037. 5591. 1.09 
+ 7 SARIMA                   2    56 3628. 6085. 0.907
+ 8 Adaptive sensitivity     2    56 3792. 6107. 0.946
+ 9 SARIMA                   2    56 3812. 6083. 0.950
+10 SARIMA                   2    56 3874. 6118. 0.982
+11 SARIMAX                  2    56 3955. 5959. 1.000
+12 Point sensitivity        2    56 4168. 5824. 1.12 
+13 SARIMA                   1    14 5637. 8783. 1.42 
+14 SARIMA                   1    14 5710. 9143. 1.43 
+15 SARIMA                   1    14 5839. 9445. 1.48 
+16 SARIMAX                  1    14 5935. 9166. 1.49 
+17 Adaptive sensitivity     1    14 6160. 9698. 1.54 
+18 Point sensitivity        1    14 6041. 8971. 1.55 
+19 SARIMA                   2    14 5402. 9317. 1.37 
+20 SARIMA                   2    14 5435. 8935. 1.39 
+21 SARIMA                   2    14 5483. 9521. 1.41 
+22 SARIMAX                  2    14 5855. 9213. 1.49 
+23 Adaptive sensitivity     2    14 5974. 9514. 1.50 
+24 Point sensitivity        2    14 5978. 9133. 1.55 
+saved table: tab_interval_accuracy.csv 
+saved table: tab_interval_misses.csv 
+saved table: tab_paired_losses.csv 
+saved table: tab_paired_summary.csv 
+saved table: tab_archive_reconciliation_detail.csv 
+saved table: tab_archive_reconciliation.csv 
+There were 16 warnings (use warnings() to see them)
+
+ALL DONE
+Integrated outputs passed: 17 cases, 56 origins, 2 horizons, selection, intervals and archive
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+PASS: 1904 fitted prediction rows, 224 supplementary rows, chronological choices and interval arithmetic
+saved /private/var/folders/qp/1qjwm7v971b4hqzb8tkrk6kr0000gn/T/sta4003-clean-20261116-hcb4pkha/output/equations/eq_sarima.png
+saved /private/var/folders/qp/1qjwm7v971b4hqzb8tkrk6kr0000gn/T/sta4003-clean-20261116-hcb4pkha/output/equations/eq_sarimax.png
+saved /private/var/folders/qp/1qjwm7v971b4hqzb8tkrk6kr0000gn/T/sta4003-clean-20261116-hcb4pkha/output/equations/eq_backtransform.png
+saved /private/var/folders/qp/1qjwm7v971b4hqzb8tkrk6kr0000gn/T/sta4003-clean-20261116-hcb4pkha/output/equations/eq_mase.png
+saved /private/var/folders/qp/1qjwm7v971b4hqzb8tkrk6kr0000gn/T/sta4003-clean-20261116-hcb4pkha/output/equations/eq_adf.png
+saved /private/var/folders/qp/1qjwm7v971b4hqzb8tkrk6kr0000gn/T/sta4003-clean-20261116-hcb4pkha/output/equations/eq_ljungbox.png
+saved /private/var/folders/qp/1qjwm7v971b4hqzb8tkrk6kr0000gn/T/sta4003-clean-20261116-hcb4pkha/output/equations/eq_dm.png
+saved /private/var/folders/qp/1qjwm7v971b4hqzb8tkrk6kr0000gn/T/sta4003-clean-20261116-hcb4pkha/FinalReport_gp12.docx

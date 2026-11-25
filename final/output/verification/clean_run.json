@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "seconds": 10.48,
+  "no_outputs_or_cache_at_start": true,
+  "raw_inputs_unchanged": true,
+  "numeric_table_checks": {
+    "tab_rolling_errors.csv": 1904,
+    "tab_rolling_accuracy.csv": 34,
+    "tab_interval_accuracy.csv": 576,
+    "tab_final_forecast_rerun.csv": 2
+  },
+  "summary_equal": true,
+  "r_result_csvs": 34,
+  "byte_identical_r_csvs": 34,
+  "report_word_regenerated": true,
+  "slides_regenerated": false,
+  "report_and_slides_pdf_text_agrees": false,
+  "log": "clean_run_6p95ul53.txt"
+}
